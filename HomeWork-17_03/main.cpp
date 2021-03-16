@@ -68,6 +68,17 @@ struct SortedList{
             temp->next = temp->next->next;
         }
     }
+    bool contains(int item) {
+        Node * temp = pHead;
+        while (temp){
+            if(temp->item == item){
+                return true;
+            }
+            temp = temp->next;
+        }
+
+        return false;
+    }
 
 
     void printAll(){
@@ -157,29 +168,17 @@ struct UniqueSortedList{
         cout << endl;
     }
 };
+
+
 SortedList * Union(SortedList * a, SortedList * b) {
     SortedList * sortedList = new SortedList;
     for (int i = 0; i < a->size(); ++i) {
-        bool check = true;
-        for (int j = 0; j < sortedList->size(); ++j) {
-            if (a->get(i)==sortedList->get(j)){
-                check = false;
-                break;
-            }
-        }
-        if (check){
+        if (!sortedList->contains(a->get(i))){
             sortedList->add(a->get(i));
         }
     }
     for (int i = 0; i < b->size(); ++i) {
-        bool check = true;
-        for (int j = 0; j < sortedList->size(); ++j) {
-            if (b->get(i)==sortedList->get(j)){
-                check = false;
-                break;
-            }
-        }
-        if (check){
+        if (!sortedList->contains(b->get(i))){
             sortedList->add(b->get(i));
         }
     }
@@ -189,20 +188,8 @@ SortedList * Union(SortedList * a, SortedList * b) {
 SortedList * Intersect(SortedList * a, SortedList * b) {
     SortedList * sortedList = new SortedList;
     for (int i = 0; i < a->size(); ++i) {
-        for (int j = 0; j < b->size(); ++j) {
-            if (a->get(i)==b->get(j)){
-                bool check = true;
-                for (int k = 0; k < sortedList->size(); ++k) {
-                    if (a->get(i)==sortedList->get(k)){
-                        check = false;
-                        break;
-                    }
-                }
-                if (check) {
-                    sortedList->add(a->get(i));
-                    break;
-                }
-            }
+        if (!sortedList->contains(a->get(i)) && b->contains(a->get(i))){
+            sortedList->add(a->get(i));
         }
     }
     return sortedList;
@@ -210,25 +197,11 @@ SortedList * Intersect(SortedList * a, SortedList * b) {
 SortedList *Difference(SortedList * a, SortedList * b) {
     SortedList * sortedList = new SortedList;
     for (int i = 0; i < a->size(); ++i) {
-        bool check = true;
-        for (int j = 0; j < b->size(); ++j) {
-            if (a->get(i)==b->get(j)){
-                check = false;
-                break;
-            }
-        }
-        if (check){
-            for (int j = 0; j < sortedList->size(); ++j) {
-                if (a->get(i)==sortedList->get(j)){
-                    check = false;
-                    break;
-                }
-            }
-        }
-        if (check){
+        if (!sortedList->contains(a->get(i)) && !b->contains(a->get(i))){
             sortedList->add(a->get(i));
         }
     }
+
     return sortedList;
 }
 
@@ -239,13 +212,22 @@ int main() {
     sortedList->add(1);
     sortedList->add(3);
     sortedList->add(3);
+    sortedList->add(3);
+    sortedList->add(3);
     sortedList->add(6);
     sortedList->add(4);
+    sortedList->add(4);
+    sortedList->add(3);
     sortedList->add(2);
     sortedList->add(2);
+    sortedList->add(11);
     sortedList->printAll();
     sortedList1->add(55);
     sortedList1->add(1);
+    sortedList1->add(3);
+    sortedList1->add(3);
+    sortedList1->add(3);
+    sortedList1->add(3);
     sortedList1->add(3);
     sortedList1->add(8);
     sortedList1->add(12);
@@ -256,7 +238,7 @@ int main() {
     sortedList2->printAll();
     SortedList * sortedList3 = Intersect(sortedList,sortedList1);
     sortedList3->printAll();
-    SortedList * sortedList4 = Difference(sortedList1,sortedList);
+    SortedList * sortedList4 = Difference(sortedList,sortedList1);
     sortedList4->printAll();
 
 
