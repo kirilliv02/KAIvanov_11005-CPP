@@ -1,0 +1,3 @@
+C:/Projects/C++/HomeWork-21_04/cmake-build-debug/CMakeFiles/HomeWork_21_04.dir
+C:/Projects/C++/HomeWork-21_04/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Projects/C++/HomeWork-21_04/cmake-build-debug/CMakeFiles/rebuild_cache.dir
