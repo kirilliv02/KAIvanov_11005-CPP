@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Projects/C++/QuickSort/CountingSort.cpp
+iostream
+-
+
+C:/Projects/C++/QuickSort/QuickSort.cpp
+iostream
+-
+
